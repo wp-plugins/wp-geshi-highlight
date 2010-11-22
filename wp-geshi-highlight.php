@@ -4,7 +4,7 @@ Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
 Description: Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML output. Styles highly and easy configurable. Clean and well documented source code.
 Author: Jan-Philip Gehrcke
-Version: 1.0.0
+Version: 1.0.0-beta
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight is a largely changed and improved version of WP-Syntax by
@@ -157,12 +157,12 @@ function wp_geshi_main() {
     // code.
     add_filter('the_content', 'wp_geshi_insert_highlighted_code_filter', 99);
     add_filter('the_excerpt', 'wp_geshi_insert_highlighted_code_filter', 99);
-    add_filter('comment_text', 'wp_geshi_insert_highlighted_code_filter', 99);
+    add_filter('get_comment_text', 'wp_geshi_insert_highlighted_code_filter', 99);
     }
 
 
-// Parse all post texts and comment texts (the latter only in case of single
-// pages). While iterating over these texts, do the following:
+// Parse all post texts and comment texts of the query.
+// While iterating over these texts, do the following:
 // - detect <pre args> code code code </pre> parts.
 // - save these parts in a global variable.
 // - modify post/comment texts: replace code parts by a unique token.
@@ -172,16 +172,20 @@ function wp_geshi_filter_and_replace_code_snippets() {
     foreach ($wp_query->posts as $post) {
         // Extract code snippets from the content. Replace them.
         $post->post_content = wp_geshi_filter_replace_code($post->post_content);
-        if (is_single()) {
-            $comments_array = get_approved_comments($post->ID);
-            // Iterate over all approved comments belonging to this post.
-            // Filter them, too.
-            foreach ($comments_array as $comment) {
-                $comment->comment_content = wp_geshi_filter_replace_code(
-                    $comment->comment_content);
-                }
-            }
+        //var_dump($wp_query->comment_count);
+        //var_dump($wp_query->have_comments());
+        //var_dump($wp_query->in_the_loop);
+        //var_dump($wp_query->next_comment());
         }
+    //
+    // Filter the comments, too.
+    //var_dump($wp_query->comments);
+    /*foreach ($wp_query->comments as $comment) {
+        echo "<!--".$comment->comment_content."//-->";
+        $comment->comment_content = wp_geshi_filter_replace_code(
+            $comment->comment_content);
+        echo "<!--".$comment->comment_content."//-->";    
+        }*/
     }
 
 

@@ -4,12 +4,12 @@ Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
 Description: Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML output. Styles highly and easy configurable. Clean and well documented source code.
 Author: Jan-Philip Gehrcke
-Version: 1.0.0-beta
+Version: 1.0.1-beta
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight is a largely changed and improved version of WP-Syntax by
 Ryan McGeary (http://ryan.mcgeary.org/): wordpress.org/extend/plugins/wp-syntax/
-Code parts from WP-Syntax are tagged.
+Code parts taken from WP-Syntax are tagged.
 
 ################################################################################
 #   :::> Contact: http://gehrcke.de -- jgehrcke@googlemail.com
@@ -134,10 +134,14 @@ add_action('template_redirect', 'wp_geshi_main');
 function wp_geshi_main() {
     global $wp_geshi_codesnipmatch_arrays;
     global $wp_geshi_run_token;
+    global $wp_geshi_comments;
 
     // Generate unique token. Code snippets will be replaced by it (+snip ID)
     // temporarily during the action of this plugin.
     $wp_geshi_run_token = md5(uniqid(rand())); // from Ryan McGeary
+    
+    // Initialize array for comments containing code to highlight.
+    $wp_geshi_comments = array();
 
     // Filter all post/comment text and save and replace code snippets.
     wp_geshi_filter_and_replace_code_snippets();
@@ -152,12 +156,26 @@ function wp_geshi_main() {
     // Now, `$wp_geshi_css_code` and `$wp_geshi_highlighted_matches` are set.
     // Add action to add CSS code to HTML header.
     add_action('wp_head', 'wp_geshi_add_css_to_head');
-
+    
+    // In `wp_geshi_filter_and_replace_code_snippets()` the comments have been
+    // queried and filtered and stored to `$wp_geshi_comments`.
+    // But, in contrast to the posts, the comments get
+    // queried again when `comments_template()` is called. Hence, comments are
+    // read two times from the database. No way to prevent this if the comments'
+    // content should be available before wp_head. After the second read,
+    // all changes -- and with that -- the "uuid replacement" is "lost".
+    // But the comments_array filter gets triggered
+    // and can easily be used to set all comments to the state after the first
+    // read/filter by wp-geshi-highlight, as saved in `$wp_geshi_comments`.
+    // --> Add high priority filter to replace comments with the ones stored in
+    // `$wp_geshi_comments`.    
+    add_filter('comments_array', 'wp_geshi_insert_comments_with_uuid', 1);
+    
     // Add low priority filter to replace unique identifiers with highlighted
     // code.
     add_filter('the_content', 'wp_geshi_insert_highlighted_code_filter', 99);
     add_filter('the_excerpt', 'wp_geshi_insert_highlighted_code_filter', 99);
-    add_filter('get_comment_text', 'wp_geshi_insert_highlighted_code_filter', 99);
+    add_filter('comment_text', 'wp_geshi_insert_highlighted_code_filter', 99);
     }
 
 
@@ -168,26 +186,36 @@ function wp_geshi_main() {
 // - modify post/comment texts: replace code parts by a unique token.
 function wp_geshi_filter_and_replace_code_snippets() {
     global $wp_query;
+    global $wp_geshi_comments;
     // Iterate over all posts in this query.
     foreach ($wp_query->posts as $post) {
         // Extract code snippets from the content. Replace them.
         $post->post_content = wp_geshi_filter_replace_code($post->post_content);
-        //var_dump($wp_query->comment_count);
-        //var_dump($wp_query->have_comments());
-        //var_dump($wp_query->in_the_loop);
-        //var_dump($wp_query->next_comment());
+        // Iterate over all approved comments belonging to this post
+        // Store comments with uuid (code replacement) in `$wp_geshi_comments`
+        $comments = get_approved_comments($post->ID);
+        foreach ($comments as $comment) {
+            $wp_geshi_comments[$comment->comment_ID] = 
+                wp_geshi_filter_replace_code($comment->comment_content);
+            } 
         }
-    //
-    // Filter the comments, too.
-    //var_dump($wp_query->comments);
-    /*foreach ($wp_query->comments as $comment) {
-        echo "<!--".$comment->comment_content."//-->";
-        $comment->comment_content = wp_geshi_filter_replace_code(
-            $comment->comment_content);
-        echo "<!--".$comment->comment_content."//-->";    
-        }*/
     }
-
+    
+    
+// This is called from a filter to replace comments coming from the second read
+// of the database with the ones stored in `$wp_geshi_comments` (first read and
+// filtered).
+function wp_geshi_insert_comments_with_uuid($comments) {
+    global $wp_geshi_comments;
+    foreach ($comments as &$comment) {
+        if (array_key_exists($comment->comment_ID, $wp_geshi_comments)) {
+            $comment->comment_content = 
+                $wp_geshi_comments[$comment->comment_ID];
+            }
+        }
+    return $comments;
+    }
+    
 
 // Search for all <pre args>code</pre> occurrences. Save them in a global var.
 // Replace them with unambiguous identifiers.

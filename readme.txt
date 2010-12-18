@@ -1,8 +1,8 @@
 === WP-GeSHi-Highlight -- syntax highlighting with clean, small and valid (X)HTML ===
 Contributors: jgehrcke
-Tags: highlight, syntax, geshi, valid
-Tested up to: 3.0.1
-Stable tag: 1.0.0-beta
+Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight
+Tested up to: 3.0.3
+Stable tag: 1.0.1-beta
 
 Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML. Code block styles are highly&easy configurable.
 
@@ -14,7 +14,7 @@ Syntax highlighting for many languages. High performing. Clean, small and valid 
 
 * Syntax highlighting for [**many languages**](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_0.txt) (based on [GeSHi](http://qbnz.com/highlighter/)).
 * **Line numbers**.
-* Extremely **simple usage**. But, if desired, **styles are highly&easy configurable**.
+* Extremely **simple to use**. But, if desired, **styles are highly&easy configurable**.
 * Multiple code blocks on a single web page? Each **can** get its own style.
 
 **II) Possible advantages over other highlighters due to sophisticated technology:**
@@ -29,7 +29,7 @@ Syntax highlighting for many languages. High performing. Clean, small and valid 
 
 **III) Usage:**
 
-Very simple:
+Type code snippets without the visual editor. Then it's very simple:
 
 `<pre lang="languagestring">
     CODE
@@ -78,5 +78,8 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.1-beta (2010-12-18) =
+* fixed: highlight in comments now should work properly.
+
 = 1.0.0-beta (2010-11-22) =
 * Initial release. Please report any issues.

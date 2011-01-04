@@ -1,8 +1,9 @@
 === WP-GeSHi-Highlight -- syntax highlighting with clean, small and valid (X)HTML ===
 Contributors: jgehrcke
+Donate link: http://gehrcke.de/donate/
 Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight
-Tested up to: 3.0.3
-Stable tag: 1.0.1-beta
+Tested up to: 3.0.4
+Stable tag: 1.0.2
 
 Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML. Code block styles are highly&easy configurable.
 
@@ -78,6 +79,10 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.2 (2011-01-04) =
+* minor source code changes
+* removed beta tag
+
 = 1.0.1-beta (2010-12-18) =
 * fixed: highlight in comments now should work properly.
 

@@ -2,8 +2,8 @@
 Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight
-Tested up to: 3.0.4
-Stable tag: 1.0.2
+Tested up to: 3.1
+Stable tag: 1.0.3
 
 Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML. Code block styles are highly&easy configurable.
 

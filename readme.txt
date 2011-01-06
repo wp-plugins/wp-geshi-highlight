@@ -56,6 +56,8 @@ Write a [comment](http://gehrcke.de/wp-geshi-highlight) or a [mail](mailto:jgehr
 
 
 
+
+
 == Installation ==
 1. Upload the `wp-geshi-highlight` directory to the `/wp-content/plugins` directory.
 1. Activate the plugin through the plugins menu in WordPress.
@@ -79,6 +81,9 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.3 (2011-01-06) =
+* fixed bug introduced in 1.0.2 that lead to comments not showing up (thanks to Uli for reporting)
+
 = 1.0.2 (2011-01-04) =
 * minor source code changes
 * removed beta tag

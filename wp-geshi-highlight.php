@@ -2,9 +2,9 @@
 /*
 Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
-Description: Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML output. Styles are highly and easy configurable. Clean and well documented source code.
+Description: Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML output. Styles are highly and easy configurable. Usage: <pre lang="language"> CODE </pre>
 Author: Jan-Philip Gehrcke
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight is a largely changed and improved version of WP-Syntax by
@@ -132,16 +132,19 @@ add_action('template_redirect', 'wp_geshi_main');
 
 
 function wp_geshi_main() {
+    // Initialize variables.
     global $wp_geshi_codesnipmatch_arrays;
     global $wp_geshi_run_token;
     global $wp_geshi_comments;
+    global $wp_geshi_used_languages;
+    global $wp_geshi_requested_css_files;
+    $wp_geshi_requested_css_files = array();
+    $wp_geshi_comments = array();
+    $wp_geshi_used_languages = array();
 
     // Generate unique token. Code snippets will be replaced by it (+snip ID)
     // temporarily during the action of this plugin.
     $wp_geshi_run_token = md5(uniqid(rand())); // from Ryan McGeary
-    
-    // Initialize array for comments containing code to highlight.
-    $wp_geshi_comments = array();
 
     // Filter all post/comment text and save and replace code snippets.
     wp_geshi_filter_and_replace_code_snippets();
@@ -156,10 +159,10 @@ function wp_geshi_main() {
     // Now, `$wp_geshi_css_code` and `$wp_geshi_highlighted_matches` are set.
     // Add action to add CSS code to HTML header.
     add_action('wp_head', 'wp_geshi_add_css_to_head');
-    
+
     // In `wp_geshi_filter_and_replace_code_snippets()` the comments have been
     // queried, filtered and stored to `$wp_geshi_comments`. But, in contrast to
-    // the posts, the comments get queried again when `comments_template()` is 
+    // the posts, the comments get queried again when `comments_template()` is
     // called by the theme. Hence, comments are read two times from the
     // database. No way to prevent this if the comments' content should be
     // available before wp_head. After the second read,
@@ -168,9 +171,9 @@ function wp_geshi_main() {
     // and can easily be used to set all comments to the state after the first
     // read/filter by wp-geshi-highlight (as saved in `$wp_geshi_comments`).
     // --> Add high priority filter to replace comments with the ones stored in
-    // `$wp_geshi_comments`.    
+    // `$wp_geshi_comments`.
     add_filter('comments_array', 'wp_geshi_insert_comments_with_uuid', 1);
-    
+
     // Add low priority filter to replace unique identifiers with highlighted
     // code.
     add_filter('the_content', 'wp_geshi_insert_highlighted_code_filter', 99);
@@ -195,13 +198,13 @@ function wp_geshi_filter_and_replace_code_snippets() {
         // Store comments with uuid (code replacement) in `$wp_geshi_comments`
         $comments = get_approved_comments($post->ID);
         foreach ($comments as $comment) {
-            $wp_geshi_comments[$comment->comment_ID] = 
+            $wp_geshi_comments[$comment->comment_ID] =
                 wp_geshi_filter_replace_code($comment->comment_content);
-            } 
+            }
         }
     }
-    
-    
+
+
 // This is called from a filter to replace comments coming from the second read
 // of the database with the ones stored in `$wp_geshi_comments`.
 function wp_geshi_insert_comments_with_uuid($comments_2nd_read) {
@@ -212,13 +215,13 @@ function wp_geshi_insert_comments_with_uuid($comments_2nd_read) {
         if (array_key_exists($comment->comment_ID, $wp_geshi_comments)) {
             // Replace the comment content got from 2nd read with the content
             // that was modified after the 1st read
-            $comment->comment_content = 
+            $comment->comment_content =
                 $wp_geshi_comments[$comment->comment_ID];
             }
         }
     return $comments_2nd_read;
     }
-    
+
 
 // Search for all <pre args>code</pre> occurrences. Save them globally.
 // Replace them with unambiguous identifiers (uuid).
@@ -253,7 +256,7 @@ function wp_geshi_store_and_substitute($match_array) {
     // regular expression searching <pre args>code</pre> (in function
     // `wp_geshi_filter_replace_code()`. They contain
     // the arguments of the <pre> tag and the code snippet itself.
-    // Store this array for later usage. Before, append the match index 
+    // Store this array for later usage. Before, append the match index
     // to `$match_array`.
     $match_array[] = $match_index;
     $wp_geshi_codesnipmatch_arrays[$match_index] = $match_array;
@@ -274,6 +277,7 @@ function wp_geshi_highlight_and_generate_css() {
     global $wp_geshi_css_code;
     global $wp_geshi_highlighted_matches;
     global $wp_geshi_requested_css_files;
+    global $wp_geshi_used_languages;
 
     // When we're here, code was found.
     // Time to initialize the highlighint machine...
@@ -289,18 +293,34 @@ function wp_geshi_highlight_and_generate_css() {
             $code = wp_geshi_code_trim($match[5]);
             if ($escaped == "true")
                 $code = htmlspecialchars_decode($code); // from Ryan McGeary
-                
+
             // set up GeSHi
             $geshi = new GeSHi($code, $language);
-            $geshi->enable_keyword_links(false);
+            // prepare GeSHi to output CSS code and to prohibit inline styles
             $geshi->enable_classes();
+            // disable keyword links
+            $geshi->enable_keyword_links(false);
+
+            // process the line number option given by the user
             if ($line) {
                 $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
                 $geshi->start_line_numbers_at($line);
                 }
+
+            // set the output code type
             $geshi->set_header_type(GESHI_HEADER_PRE_VALID);
-            $wp_geshi_css_code .= $geshi->get_stylesheet();
-            
+
+            // Append the CSS code to the CSS code string if this
+            // is the first occurrence of the code language.
+            // $geshi->get_stylesheet(false) disables the economy mode, i.e.
+            // the method will return the full CSS code for the given language.
+            // This makes it much easier to use the same CSS code for several
+            // code blocks of the same language.
+            if  (!in_array($language, $wp_geshi_used_languages)) {
+                $wp_geshi_used_languages[] = $language;
+                $wp_geshi_css_code .= $geshi->get_stylesheet();
+                }
+
             $output = "";
             // cssfile "none" means no wrapping styling at all!
             if ($cssfile != "none") {
@@ -313,13 +333,13 @@ function wp_geshi_highlight_and_generate_css() {
                            '<div class="'.$cssfile.'-wrap4">'.
                            '<div class="'.$cssfile.'-wrap3">'.
                            '<div class="'.$cssfile.'-wrap2">'.
-                           '<div class="'.$cssfile.'-wrap">'.      
+                           '<div class="'.$cssfile.'-wrap">'.
                            '<div class="'.$cssfile.'">';
                 }
             $output .= $geshi->parse_code();
             if ($cssfile != "none")
                 $output .= '</div></div></div></div></div></div>'."\n\n";
-            $wp_geshi_highlighted_matches[$match_index] = $output;  
+            $wp_geshi_highlighted_matches[$match_index] = $output;
         }
     // At this point, all code snippets are parsed. highlighted code is stored.
     // CSS code is generated. Delete what's not necessary anymore.
@@ -357,10 +377,10 @@ function wp_geshi_code_trim($code) {
 function wp_geshi_add_css_to_head() {
     global $wp_geshi_css_code;
     global $wp_geshi_requested_css_files;
-    
+
     echo "\n<!-- WP-GeSHi-Highlight plugin by ".
          "Jan-Philip Gehrcke: http://gehrcke.de -->\n";
-    
+
     // set up paths and names
     $csspathpre = WP_PLUGIN_DIR."/wp-geshi-highlight/";
     $cssurlpre = WP_PLUGIN_URL."/wp-geshi-highlight/";
@@ -377,6 +397,7 @@ function wp_geshi_add_css_to_head() {
         echo '<style type="text/css"><!--'.
             $wp_geshi_css_code."//--></style>\n";
     }
+
 
 function wp_geshi_echo_cssfile($path, $url) {
     // Only echo a CSS file inclusion if its corresponding path is valid

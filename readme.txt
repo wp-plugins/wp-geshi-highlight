@@ -3,7 +3,7 @@ Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight
 Tested up to: 3.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML. Code block styles are highly&easy configurable.
 
@@ -81,15 +81,19 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.4 (2011-01-12) =
+* optimized: now, CSS code is only printed once if you use the same language for multiple code blocks on the same page
+* minor code changes
+
 = 1.0.3 (2011-01-06) =
-* fixed bug introduced in 1.0.2 that lead to comments not showing up (thanks to Uli for reporting)
+* fixed: comments were not showing up (bug introduced in 1.0.2, thanks to Uli for reporting)
 
 = 1.0.2 (2011-01-04) =
 * minor source code changes
 * removed beta tag
 
 = 1.0.1-beta (2010-12-18) =
-* fixed: highlight in comments now should work properly.
+* fixed: highlight in comments now should work properly
 
 = 1.0.0-beta (2010-11-22) =
-* Initial release. Please report any issues.
+* initial release, please report any issues

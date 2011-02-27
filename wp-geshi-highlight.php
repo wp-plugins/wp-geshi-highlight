@@ -4,7 +4,7 @@ Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
 Description: Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML output. Styles are highly and easy configurable. Usage: <pre lang="language"> CODE </pre>
 Author: Jan-Philip Gehrcke
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight is a largely changed and improved version of WP-Syntax by
@@ -14,7 +14,7 @@ Code parts taken from WP-Syntax are tagged.
 ################################################################################
 #   :::> Contact: http://gehrcke.de -- jgehrcke@googlemail.com
 #
-#   Copyright (C) 2010 Jan-Philip Gehrcke
+#   Copyright (C) 2010-2011 Jan-Philip Gehrcke
 #   Copyright (C) 2007-2009 Ryan McGeary (only the tagged code parts)
 #
 #   This file is part of WP-GeSHi-Highlight.
@@ -29,7 +29,7 @@ Code parts taken from WP-Syntax are tagged.
 This is what's good about this plugin
 (and may be better than other highlighters)
 ===========================================
-Secure and efficient
+Reliable and efficient
 --------------------
 - WP-GeSHi-Highlight filters&replaces code snippets as early as possible. The
     highlighted code is inserted as late as possible. Hence, interfering with

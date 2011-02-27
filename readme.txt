@@ -3,7 +3,7 @@ Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight
 Tested up to: 3.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 
 Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML. Code block styles are highly&easy configurable.
 
@@ -13,7 +13,7 @@ Syntax highlighting for many languages. High performing. Clean, small and valid 
 == Description ==
 **I) Features:**
 
-* Syntax highlighting for [**many languages**](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_0.txt) (based on [GeSHi](http://qbnz.com/highlighter/)).
+* Syntax highlighting for [**many languages**](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_5.txt) (based on [GeSHi](http://qbnz.com/highlighter/)).
 * **Line numbers**.
 * Extremely **simple to use**. But, if desired, **styles are highly&easy configurable**.
 * Multiple code blocks on a single web page? Each **can** get its own style.
@@ -81,6 +81,9 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.5 (2011-02-27) =
+* updated GeSHi from 1.0.8.9 to 1.0.8.10 ("Some minor parser tweaks and fixes to existing language files. It adds 15 more languages.")
+
 = 1.0.4 (2011-01-12) =
 * optimized: now, CSS code is only printed once if you use the same language for multiple code blocks on the same page
 * minor code changes

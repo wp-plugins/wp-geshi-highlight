@@ -1,13 +1,11 @@
-=== WP-GeSHi-Highlight -- syntax highlighting with clean, small and valid (X)HTML ===
+=== WP-GeSHi-Highlight -- syntax highlighting via clean, small, and valid (X)HTML ===
 Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
-Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight
-Tested up to: 3.1
+Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight, clean, fast
+Tested up to: 3.3
 Stable tag: 1.0.5
 
-Syntax highlighting for many languages. High performing. Clean, small and valid (X)HTML. Code block styles are highly&easy configurable.
-
-
+Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easy configurable.
 
 
 == Description ==
@@ -15,34 +13,34 @@ Syntax highlighting for many languages. High performing. Clean, small and valid 
 
 * Syntax highlighting for [**many languages**](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_5.txt) (based on [GeSHi](http://qbnz.com/highlighter/)).
 * **Line numbers**.
-* Extremely **simple to use**. But, if desired, **styles are highly&easy configurable**.
-* Multiple code blocks on a single web page? Each **can** get its own style.
+* Extremely **simple to use**. If desired, **styles are highly&easy configurable**.
+* Multiple code blocks on a single web page? Each one **can** get its own style.
 
-**II) Possible advantages over other highlighters due to sophisticated technology:**
+**II) Possible advantages over other highlighters:**
 
 * Use of numbered lists to create line numbers -> Code-number-displacements **never** occur!
 * Copy/paste keeps formatting. Line numbers are not copied.
 * Uses CSS classes: **clean and small HTML output**.
 * **Valid** (X)HTML output.
-* Only minimal waste of effort if there is nothing to highlight.
+* Only minimal waste of CPU cycles if there is nothing to highlight.
 * High **performance**.
-* Clean and well documented source code.
+* Clean and well-documented source code.
 
 **III) Usage:**
 
-Type code snippets without the visual editor. Then it's very simple:
+Bear in mind: don't use the visual post editor! Then, it's very simple:
 
 `<pre lang="languagestring">
     CODE
 </pre>`
 
-Hence, e.g.
+This is a short example:
 
 `<pre lang="bash">
     $ dd if=/dev/zero of=image.ext3 bs=1M count=10000 oflag=append conv=notrunc
 </pre>`
 
-Full instructions explaining more options can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight).
+All available options are listed and explained on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight).
 
 **IV) How does it look in action?**
 
@@ -50,11 +48,8 @@ Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-high
 
 **V) Issues:**
 
-It works for me. But this is still not much tested, so there are for sure some issues. **Please** let me know :-)
-Write a [comment](http://gehrcke.de/wp-geshi-highlight) or a [mail](mailto:jgehrcke@googlemail.com).
-
-
-
+**Please** let me know about them!
+Write a mail to [mail](mailto:jgehrcke@googlemail.com).
 
 
 
@@ -73,7 +68,6 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 
-
 == Screenshots ==
 1. This screenshot shows WP-GeSHi-Highlight in action. Furthermore, it visualizes how code blocks on the same page can have different styles (which is very easy to accomplish using WP-GeSHi-Highlight).
 
@@ -81,6 +75,9 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.6 (2012-05-12) =
+* fix line-spacing bug when displaying code blocks with different line numbering settings on the same page. 
+
 = 1.0.5 (2011-02-27) =
 * updated GeSHi from 1.0.8.9 to 1.0.8.10 ("Some minor parser tweaks and fixes to existing language files. It adds 15 more languages.")
 

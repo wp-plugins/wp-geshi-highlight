@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
-Description: Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easy configurable.
+Description: Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easyly configurable.
 Author: Jan-Philip Gehrcke
 Version: 1.0.6
 Author URI: http://gehrcke.de

@@ -5,7 +5,7 @@ Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight, clean, 
 Tested up to: 3.3
 Stable tag: 1.0.5
 
-Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easy configurable.
+Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easyly configurable.
 
 
 == Description ==

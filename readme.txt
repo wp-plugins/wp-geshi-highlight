@@ -13,7 +13,7 @@ Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Hi
 
 * Syntax highlighting for [**many languages**](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_5.txt) (based on [GeSHi](http://qbnz.com/highlighter/)).
 * **Line numbers**.
-* Extremely **simple to use**. If desired, **styles are highly&easy configurable**.
+* Extremely **simple to use**. If desired, **styles are highly&easyly configurable**.
 * Multiple code blocks on a single web page? Each one **can** get its own style.
 
 **II) Possible advantages over other highlighters:**
@@ -76,7 +76,7 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 == Changelog ==
 = 1.0.6 (2012-05-12) =
-* fix line-spacing bug when displaying code blocks with different line numbering settings on the same page. 
+* fix line-spacing bug when displaying code blocks with different line numbering settings on the same page. Thanks to Bas ten Berge for reporting.
 
 = 1.0.5 (2011-02-27) =
 * updated GeSHi from 1.0.8.9 to 1.0.8.10 ("Some minor parser tweaks and fixes to existing language files. It adds 15 more languages.")

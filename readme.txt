@@ -3,7 +3,7 @@ Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight, clean, fast
 Tested up to: 3.3
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 
 Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easyly configurable.
 
@@ -75,6 +75,9 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 
 == Changelog ==
+= 1.0.7 (2012-05-12) =
+* Fixed collision with other plugins including their own version of GeSHi. Thanks to Bas for reporting.
+
 = 1.0.6 (2012-05-12) =
 * fix line-spacing bug when displaying code blocks with different line numbering settings on the same page. Thanks to Bas ten Berge for reporting.
 

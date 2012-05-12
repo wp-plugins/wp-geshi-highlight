@@ -4,7 +4,7 @@ Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
 Description: Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easyly configurable.
 Author: Jan-Philip Gehrcke
-Version: 1.0.6
+Version: 1.0.7
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight is a largely changed and improved version of WP-Syntax by
@@ -280,8 +280,12 @@ function wp_geshi_highlight_and_generate_css() {
     global $wp_geshi_used_languages;
 
     // When we're here, code was found.
-    // Time to initialize the highlighint machine...
-    include_once("geshi/geshi.php");
+    // Time to initialize the highlighting machine...
+    
+    // Check for `class_exists('GeSHi')` proposed by Bas ten Berge, who observed 
+    // a `Cannot redeclare class GeSHi`-error, because another plugin 
+    // already included its own version of GeSHi.
+    if (!class_exists('GeSHi')) include_once("geshi/geshi.php");
     $wp_geshi_css_code = "";
     foreach($wp_geshi_codesnipmatch_arrays as $match_index => $match) {
             // process the match details. the correspondence is explained at

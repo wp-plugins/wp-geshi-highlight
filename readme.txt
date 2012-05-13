@@ -49,7 +49,7 @@ Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-high
 **V) Issues:**
 
 **Please** let me know about them!
-Write a mail to [mail](mailto:jgehrcke@googlemail.com).
+Write a mail to [me](mailto:jgehrcke@googlemail.com).
 
 
 

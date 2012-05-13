@@ -5,7 +5,7 @@ Tags: highlight, syntax, geshi, valid, highlighting, wp-geshi-highlight, clean, 
 Tested up to: 3.3
 Stable tag: 1.0.7
 
-Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easyly configurable.
+Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Highly&easily configurable.
 
 
 == Description ==
@@ -13,7 +13,7 @@ Fast syntax highlighting for many languages. Clean, small, and valid (X)HTML. Hi
 
 * Syntax highlighting for [**many languages**](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_5.txt) (based on [GeSHi](http://qbnz.com/highlighter/)).
 * **Line numbers**.
-* Extremely **simple to use**. If desired, **styles are highly&easyly configurable**.
+* Extremely **simple to use**. If desired, **styles are highly&easily configurable**.
 * Multiple code blocks on a single web page? Each one **can** get its own style.
 
 **II) Possible advantages over other highlighters:**
@@ -49,7 +49,7 @@ Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-high
 **V) Issues:**
 
 **Please** let me know about them!
-Write a mail to [mail](mailto:jgehrcke@googlemail.com).
+Write a mail to [me](mailto:jgehrcke@googlemail.com).
 
 
 

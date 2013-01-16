@@ -68,6 +68,7 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 = 1.0.8 (2013-01-17) =
 * Update GeSHi to 1.0.8.11 (numerous language file updates).
 * Include GeSHi language file for nginx configuration files (taken from GeSHi SVN revision r2572, to be released with 1.0.8.12).
+* Improve default CSS: make use of CSS3 box shadows, minor tweaks.
 
 = 1.0.7 (2012-05-12) =
 * Fix collision with other plugins including their own version of GeSHi (thanks to Bas for reporting).

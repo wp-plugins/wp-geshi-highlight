@@ -404,7 +404,7 @@ function wp_geshi_add_css_to_head() {
  
     // Echo GeSHi highlighting CSS code inline.
     if (strlen($wp_geshi_css_code) > 0)
-        echo '\n<style type="text/css">'.$wp_geshi_css_code.'</style>\n';
+        echo '<style type="text/css">'.$wp_geshi_css_code.'</style>';
     }
 
 

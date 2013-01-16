@@ -4,8 +4,9 @@ Donate link: http://gehrcke.de/donate/
 Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
 Tested up to: 3.5
 Stable tag: 1.0.7
+License: GPLv2
 
-Fast syntax highlighting for many languages based on GeSHi, the well-established and award-winning highlighter for PHP. Produces clean, small, and valid (X)HTML output. WP-GeSHi-Highlight is easily configurable and very simple to use.
+Fast syntax highlighting for many languages based on GeSHi, the well-established and award-winning PHP highlighter. Produces clean, small, and valid HTML output. WP-GeSHi-Highlight is easily configurable and very simple to use.
 
 == Description ==
 **I) Features:**
@@ -13,22 +14,22 @@ Fast syntax highlighting for many languages based on GeSHi, the well-established
 * Syntax highlighting for [**many** languages](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_8.txt).
 * Stability, performance and security inherited from [GeSHi](http://qbnz.com/highlighter/).
 * Line numbering (optional). Code-number displacements never occur. Numbers are not copied in most browsers.
-* **Simple** to use.
+* Simple usage.
 * Per-block styles: each code block on a single web page can be designed on its own.
 * Clean, small and valid HTML output.
 * Minimal waste of CPU cycles when there is nothing to highlight.
-* Less CSS code compared to other highlighters when a lot of code is displayed.
 * Clean and well-documented source code.
 
 WP-GeSHi-Highlight is a largely rewritten version of [WP-Syntax](http://wordpress.org/extend/plugins/wp-syntax/). Compared to WP-Syntax, WP-GeSHi-Highlight
-* provides valid HTML when line numbering is activated (via GeSHi's GESHI_HEADER_PRE_VALID setting).
+
+* creates valid HTML when line numbering is activated (via GeSHi's [GESHI_HEADER_PRE_VALID](http://qbnz.com/highlighter/geshi-doc.html#the-code-container) setting).
 * creates less HTML source code.
 * delivers an improved default style sheet.
 * has more styling flexibility.
 * has the cleaner source code.
-* makes more use of up-to-date WordPress API calls.
+* makes usage of up-to-date WordPress API calls.
 
-**III) Usage:**
+**II) Usage:**
 Bear in mind: don't use the visual post editor. Then, it is very simple. Insert code blocks like this:
 
 `<pre lang="languagestring">
@@ -43,11 +44,11 @@ A short example:
 
 All available options are listed and explained on the [plugin's website](http://gehrcke.de/wp-geshi-highlight).
 
-**IV) How does it look in action?**
+**III) How does it look in action?**
 
 Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight/#examples).
 
-**V) Issues:**
+**IV) Issues:**
 
 Let me know if you find one: write a [mail](mailto:jgehrcke@googlemail.com) or leave a [comment](http://gehrcke.de/wp-geshi-highlight).
 
@@ -73,11 +74,11 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 == Changelog ==
 = 1.0.8 (2013-01-17) =
-* Improve default CSS: make use of CSS3 box shadows, several tweaks.
-* If the code block CSS file is found in theme style directory, it now has priority over the one in the plugin directory.
+* Improve default stylesheet: make use of CSS3 box shadows, several tweaks.
+* If the code block style file is found in the [theme style directory](http://codex.wordpress.org/Function_Reference/get_stylesheet_directory), it now has priority over the one in the plugin directory.
 * Update GeSHi to 1.0.8.11 (numerous language file updates).
 * Include GeSHi language file for nginx configuration files (taken from GeSHi SVN revision r2572, to be released with 1.0.8.12).
-* Use wp_enqueue_style method for style sheet inclusion.
+* Use [wp_enqueue_style](http://codex.wordpress.org/Function_Reference/wp_enqueue_style) method for style sheet inclusion.
 * Deactivate GeSHi economic mode when printing style sheet.
 * Do not print credits to HTML source anymore.
 

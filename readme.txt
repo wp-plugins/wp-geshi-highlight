@@ -5,7 +5,7 @@ Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highl
 Tested up to: 3.5
 Stable tag: 1.0.7
 
-Fast syntax highlighting for many languages based on GeSHi, the well-established and award-winning highlighter for PHP. Produces clean, small, and valid (X)HTML output. WP-GeSHi-Highlight is easily configurable.
+Fast syntax highlighting for many languages based on GeSHi, the well-established and award-winning highlighter for PHP. Produces clean, small, and valid (X)HTML output. WP-GeSHi-Highlight is easily configurable and very simple to use.
 
 == Description ==
 **I) Features:**
@@ -20,6 +20,13 @@ Fast syntax highlighting for many languages based on GeSHi, the well-established
 * Less CSS code compared to other highlighters when a lot of code is displayed.
 * Clean and well-documented source code.
 
+WP-GeSHi-Highlight is a largely rewritten version of [WP-Syntax](http://wordpress.org/extend/plugins/wp-syntax/). Compared to WP-Syntax, WP-GeSHi-Highlight
+* provides valid HTML when line numbering is activated (via GeSHi's GESHI_HEADER_PRE_VALID setting).
+* creates less HTML source code.
+* delivers an improved default style sheet.
+* has more styling flexibility.
+* has the cleaner source code.
+* makes more use of up-to-date WordPress API calls.
 
 **III) Usage:**
 Bear in mind: don't use the visual post editor. Then, it is very simple. Insert code blocks like this:
@@ -66,9 +73,13 @@ Yes, try e.g. line="13". But this [breaks](http://qbnz.com/highlighter/geshi-doc
 
 == Changelog ==
 = 1.0.8 (2013-01-17) =
+* Improve default CSS: make use of CSS3 box shadows, several tweaks.
+* If the code block CSS file is found in theme style directory, it now has priority over the one in the plugin directory.
 * Update GeSHi to 1.0.8.11 (numerous language file updates).
 * Include GeSHi language file for nginx configuration files (taken from GeSHi SVN revision r2572, to be released with 1.0.8.12).
-* Improve default CSS: make use of CSS3 box shadows, minor tweaks.
+* Use wp_enqueue_style method for style sheet inclusion.
+* Deactivate GeSHi economic mode when printing style sheet.
+* Do not print credits to HTML source anymore.
 
 = 1.0.7 (2012-05-12) =
 * Fix collision with other plugins including their own version of GeSHi (thanks to Bas for reporting).

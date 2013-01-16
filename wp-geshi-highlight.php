@@ -92,8 +92,8 @@ only happen if there was actually a code snippet to highlight.
     stored safely in a global variable.
 
 
-II) wp_head hook:
------------------
+II) wp_enqueue_scripts hook:
+----------------------------
 Within this hook, the plugin tells WordPress to print two strings to the <head>
 section of the HTML code:
   a) include wp-geshi-highlight.css (if available in the plugin directory).
@@ -148,7 +148,7 @@ function wp_geshi_main() {
 
     // Now, `$wp_geshi_css_code` and `$wp_geshi_highlighted_matches` are set.
     // Add action to add CSS code to HTML header.
-    add_action('wp_head', 'wp_geshi_add_css_to_head');
+    add_action('wp_enqueue_scripts', 'wp_geshi_add_css_to_head');
 
     // In `wp_geshi_filter_and_replace_code_snippets()` the comments have been
     // queried, filtered and stored in `$wp_geshi_comments`. But, in contrast to
@@ -306,12 +306,12 @@ function wp_geshi_highlight_and_generate_css() {
 
             // Append the CSS code to the CSS code string if this is the first
             // occurrence of the language. $geshi->get_stylesheet(false)
-            // disables the economy mode, i.e. this will return  the full CSS
+            // disables the economy mode, i.e. this will return the full CSS
             // code for the given language. This makes it much easier to use the
             // same CSS code for several code blocks of the same language.
             if  (!in_array($language, $wp_geshi_used_languages)) {
                 $wp_geshi_used_languages[] = $language;
-                $wp_geshi_css_code .= $geshi->get_stylesheet();
+                $wp_geshi_css_code .= $geshi->get_stylesheet(false);
                 }
 
             $output = "";
@@ -371,32 +371,40 @@ function wp_geshi_add_css_to_head() {
     global $wp_geshi_css_code;
     global $wp_geshi_requested_css_files;
 
-    echo "\n<!-- WP-GeSHi-Highlight plugin by ".
-         "Jan-Philip Gehrcke: http://gehrcke.de -->\n";
-
-    // Set up paths and names.
-    $csspathpre = WP_PLUGIN_DIR."/wp-geshi-highlight/";
-    $cssurlpre = WP_PLUGIN_URL."/wp-geshi-highlight/";
+    // CSS dir/uri prefix and suffix.
+    $plugin_cssdir = WP_PLUGIN_DIR."/wp-geshi-highlight";
+    $plugin_cssdir_uri = WP_PLUGIN_URL."/wp-geshi-highlight";
     $csssfx = ".css";
-
-    // Echo all required CSS files; delete duplicates.
+    // Retrieve directory for the current theme/child theme.
+    $theme_cssdir = get_stylesheet_directory();
+    
+    // Delete duplicates from CSS array.
     $wp_geshi_requested_css_files = array_unique($wp_geshi_requested_css_files);
-    foreach($wp_geshi_requested_css_files as $cssfile)
-        wp_geshi_echo_cssfile($csspathpre.$cssfile.$csssfx,
-            $cssurlpre.$cssfile.$csssfx);
-    // Echo GeSHi CSS code if required.
-    if (strlen($wp_geshi_css_code) > 0)
-        echo '<style type="text/css"><!--'.
-            $wp_geshi_css_code."//--></style>\n";
-    }
-
-
-function wp_geshi_echo_cssfile($path, $url) {
-    // Only link a CSS file if its corresponding path is valid.
-    if (file_exists($path)) {
-        echo '<link rel="stylesheet" href="'.$url.
-             '" type="text/css" media="screen" />'."\n";
+    
+    foreach($wp_geshi_requested_css_files as $cssfile) {
+        $cssfilenamewslash = "/".$cssfile.$csssfx;
+        // If the CSS file is found in the `get_stylesheet_directory()`,
+        // it takes precedence over the CSS file in the plugin directory.
+        $theme_css_path = $theme_cssdir.$cssfilenamewslash;
+        $plugin_css_path = $plugin_cssdir.$cssfilenamewslash;
+        if (file_exists($theme_css_path))
+            // Use the CSS file from the theme.
+            $cssuri = get_stylesheet_directory_uri().$cssfilenamewslash;
+        elseif (file_exists($plugin_css_path))
+            // Use the default CSS file from the plugin dir.
+            $cssuri = $plugin_cssdir_uri.$cssfilenamewslash;
+        else
+            $cssuri = false;
+         // Enqueue style file to WP CSS queue.
+        if ($cssuri) {
+            wp_register_style("wp_geshi_".$cssfile, $cssuri);
+            wp_enqueue_style("wp_geshi_".$cssfile);
+            }   
         }
+ 
+    // Echo GeSHi highlighting CSS code inline.
+    if (strlen($wp_geshi_css_code) > 0)
+        echo '\n<style type="text/css">'.$wp_geshi_css_code.'</style>\n';
     }
 
 

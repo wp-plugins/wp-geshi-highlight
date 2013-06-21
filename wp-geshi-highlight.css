@@ -1,8 +1,12 @@
+pre {
+    background-color: #fafaf7 !important;
+    }
+
 .wp-geshi-highlight {
     width: 100%;
-    font-size: 110%;
+    font-size: 100%;
     font-family: monospace;
-    line-height: 115%;
+    line-height: 140%;
     background-color: #fafaf7;
     padding-left: 8px;
     padding-top: 7px;
@@ -12,6 +16,7 @@
     overflow-y: hidden;
     -moz-border-radius: 1px;
     -webkit-border-radius: 1px;
+    border: none;
     border-radius: 1px;
     -moz-box-shadow: 1px 1px 34px #888;
     -webkit-box-shadow: 1px 1px 3px #888;

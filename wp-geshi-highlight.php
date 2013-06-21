@@ -294,7 +294,7 @@ function wp_geshi_highlight_and_generate_css() {
             $geshi->enable_classes();
             // Disable keyword links.
             $geshi->enable_keyword_links(false);
-
+            
             // Process the line number option given by user.
             if ($line) {
                 $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
@@ -303,6 +303,12 @@ function wp_geshi_highlight_and_generate_css() {
 
             // Set the output code type.
             $geshi->set_header_type(GESHI_HEADER_PRE_VALID);
+
+            // By default, geshi sets font size to 1em and line height to 1.2em.
+            // That does not fit to many modern layouts, make this relative, and
+            // most important, make it customizable from outside.
+            $geshi->set_code_style('');
+
 
             // Append the CSS code to the CSS code string if this is the first
             // occurrence of the language. $geshi->get_stylesheet(false)

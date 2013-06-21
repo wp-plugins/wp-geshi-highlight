@@ -69,6 +69,7 @@ Please have a look at the [plugin's website](http://gehrcke.de/wp-geshi-highligh
 
 == Changelog ==
 = 1.1.0 (2013-xx-xx)=
+* Create default style in compatibility with Twentythirteen theme.
 * Remove GeSHi's hard-coded font-size and line-height code styles.
 * Make box shadow and border radius a bit less intense in default style.
 * Slightly increase top and bottom padding in default style.

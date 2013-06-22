@@ -3,7 +3,7 @@ Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
 Tested up to: 3.6
-Stable tag: 1.0.8.1
+Stable tag: 1.1.0
 License: GPLv2
 
 Fast syntax highlighting for many languages. Simple usage. Based on GeSHi (well-established & award-winning PHP highlighter). Valid HTML output.
@@ -64,14 +64,14 @@ Please have a look at the [plugin's website](http://gehrcke.de/wp-geshi-highligh
 
 
 == Screenshots ==
-1. This screenshot shows WP-GeSHi-Highlight in action. Furthermore, it visualizes how code blocks on the same page can have different styles (very easy to accomplish using WP-GeSHi-Highlight). Possibly this screenshot is out of date regarding the styling details. 
+1. This screenshot shows WP-GeSHi-Highlight in action. Furthermore, it visualizes how code blocks on the same page can have different styles (very easy to accomplish using WP-GeSHi-Highlight). Possibly this screenshot is out of date regarding the styling details.
 
 
 == Changelog ==
-= 1.1.0 (2013-xx-xx)=
-* Create default style in compatibility with Twentythirteen theme.
+= 1.1.0 (2013-06-22)=
+* Adjust default style for compatibility with Twentythirteen theme.
 * Remove GeSHi's hard-coded font-size and line-height code styles.
-* Make box shadow and border radius a bit less intense in default style.
+* Reduce box shadow and border radius in default style.
 * Slightly increase top and bottom padding in default style.
 
 = 1.0.8 (2013-01-17) =

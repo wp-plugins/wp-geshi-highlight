@@ -3,7 +3,7 @@ Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
 Tested up to: 3.6
-Stable tag: 1.1.0.1
+Stable tag: 1.1.0.2
 License: GPLv2
 
 Fast syntax highlighting for many languages. Simple usage. Based on GeSHi (well-established & award-winning PHP highlighter). Valid HTML output.

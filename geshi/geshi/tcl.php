@@ -57,7 +57,7 @@ $language_data = array (
         //2 => '/{[^}\n]+}/'
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"', "'"),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         /*
@@ -187,8 +187,6 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
             'DISALLOWED_BEFORE' => '\\'
+            )
         )
-    )
 );
-
-?>

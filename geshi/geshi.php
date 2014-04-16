@@ -1019,10 +1019,20 @@ class GeSHi {
      */
     function set_keyword_group_style($key, $style, $preserve_defaults = false) {
         //Set the style for this keyword group
-        if (!$preserve_defaults) {
-            $this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+        if('*' == $key) {
+            foreach($this->language_data['STYLES']['KEYWORDS'] as $_key => $_value) {
+                if (!$preserve_defaults) {
+                    $this->language_data['STYLES']['KEYWORDS'][$_key] = $style;
+                } else {
+                    $this->language_data['STYLES']['KEYWORDS'][$_key] .= $style;
+                }
+            }
         } else {
-            $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
+            if (!$preserve_defaults) {
+                $this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+            } else {
+                $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
+            }
         }
 
         //Update the lexic permissions
@@ -1054,10 +1064,20 @@ class GeSHi {
      * @since 1.0.0
      */
     function set_comments_style($key, $style, $preserve_defaults = false) {
-        if (!$preserve_defaults) {
-            $this->language_data['STYLES']['COMMENTS'][$key] = $style;
+        if('*' == $key) {
+            foreach($this->language_data['STYLES']['COMMENTS'] as $_key => $_value) {
+                if (!$preserve_defaults) {
+                    $this->language_data['STYLES']['COMMENTS'][$_key] = $style;
+                } else {
+                    $this->language_data['STYLES']['COMMENTS'][$_key] .= $style;
+                }
+            }
         } else {
-            $this->language_data['STYLES']['COMMENTS'][$key] .= $style;
+            if (!$preserve_defaults) {
+                $this->language_data['STYLES']['COMMENTS'][$key] = $style;
+            } else {
+                $this->language_data['STYLES']['COMMENTS'][$key] .= $style;
+            }
         }
     }
 
@@ -1445,9 +1465,8 @@ class GeSHi {
      * @since 1.0.5
      * @todo Re-think about how this method works (maybe make it private and/or make it
      *       a extension->lang lookup?)
-     * @todo static?
      */
-    function get_language_name_from_extension( $extension, $lookup = array() ) {
+    static function get_language_name_from_extension( $extension, $lookup = array() ) {
         $extension = strtolower($extension);
 
         if ( !is_array($lookup) || empty($lookup)) {
@@ -1557,7 +1576,7 @@ class GeSHi {
     function load_from_file($file_name, $lookup = array()) {
         if (is_readable($file_name)) {
             $this->set_source(file_get_contents($file_name));
-            $this->set_language($this->get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
+            $this->set_language(self::get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
         } else {
             $this->error = GESHI_ERROR_FILE_NOT_READABLE;
         }
@@ -3573,7 +3592,6 @@ class GeSHi {
                 $symbol_length = strlen($symbol_match);
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
-                $symbol_end = $symbol_length + $symbol_offset;
                 $symbol_hl = "";
 
                 // if we have multiple styles, we have to handle them properly
@@ -3874,9 +3892,6 @@ class GeSHi {
             // If we're using the <pre> header, we shouldn't add newlines because
             // the <pre> will line-break them (and the <li>s already do this for us)
             $ls = ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) ? "\n" : '';
-
-            // Set vars to defaults for following loop
-            $i = 0;
 
             // Foreach line...
             for ($i = 0, $n = count($code); $i < $n;) {
@@ -4771,5 +4786,3 @@ if (!function_exists('geshi_highlight')) {
         return true;
     }
 }
-
-?>

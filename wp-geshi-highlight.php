@@ -2,19 +2,19 @@
 /*
 Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
-Description: Fast syntax highlighting for many languages based on GeSHi, the well-established and award-winning highlighter for PHP. Produces clean, small, and valid (X)HTML output. WP-GeSHi-Highlight is simple to use and easily configurable.
+Description: Syntax highlighting for many languages based on GeSHi, the well-established and award-winning highlighter engine. Produces clean, small, valid HTML output. Simple to use and configurable.
 Author: Jan-Philip Gehrcke
-Version: 1.1.0
+Version: 1.2.0
 Author URI: http://gehrcke.de
 
-WP-GeSHi-Highlight is a largely changed and improved version of WP-Syntax by
+WP-GeSHi-Highlight is a largely changed version of WP-Syntax by
 Ryan McGeary (http://ryan.mcgeary.org/): wordpress.org/extend/plugins/wp-syntax/
 Code parts taken from WP-Syntax are marked correspondingly.
 
 ################################################################################
 #   Contact: http://gehrcke.de -- jgehrcke@googlemail.com
 #
-#   Copyright (C) 2010-2013 Jan-Philip Gehrcke
+#   Copyright (C) 2010-2014 Jan-Philip Gehrcke
 #   Copyright (C) 2007-2009 Ryan McGeary (only the tagged code parts)
 #
 #   This file is part of WP-GeSHi-Highlight.
@@ -31,23 +31,23 @@ Advantages over comparable highlighters
 - WP-GeSHi-Highlight filters & replaces code snippets as early as possible. The
   highlighted code is inserted as late as possible. Hence, interference with
   other plugins is minimized.
-- If it does not find any code snippet, it does not waste performance.
+- If it does not find any code snippet, it does not waste CPU cycles.
 
 Usage of GeSHi setting "GESHI_HEADER_PRE_VALID"
 -----------------------------------------------
-- Makes usage of numbered lists for line numbering.
-    ->  number-source shiftings never occur. Methods relying on tables for
+- Uses numbered lists for line numbering.
+    ->  number-source shifts do not occur. Methods relying on tables for
         number-source alignment often fail when showing long code blocks.
         I had this problem with the original version of WP-Syntax.
         Certain pastebins have this problem.
-- Creates valid (X)HTML code. Not trivial while using ordered lists for line
+- Creates valid HTML code. Not trivial while using ordered lists for line
   numbers. The challenge is discussed in many bugreports, e.g.
   http://bit.ly/bks1Uu
 
 Usage of GeSHi's get_stylesheet()
 ---------------------------------
-- Creates hort highlighting html code: styling is not based on long
-    <span style"........."> ocurrences.
+- Creates short highlighting html code: styling is not based on long
+    <span style"........."> occurrences.
 
 Possible issues
 ===============
@@ -73,14 +73,14 @@ I) template_redirect hook:
 2)  This plugin iterates over this content, i.e. over each post, including each
     (approved) comment belonging to this post.
 3)  While iterating over the post and comment texts, occurrences of the pattern
-    <pre args>CODE</pre> are searched.
+    <pre args>CODE</pre> are being searched for.
 4)  If one such pattern is found, the information (args and CODE basically)
     is stored safely in a global variable, together with a match index.
 
 This was the fixed part at the beginning of each page request. The next steps
 only happen if there was actually a code snippet to highlight.
 
-5)  Furthermore, the occurrence of the pattern in the original content
+5)  The occurrence of the pattern in the original content
     (post/comment text) is deleted and replaced by a unique identifier
     containing the corresponding match index. Therefore, the content cannot be
     altered by any other WordPress plugin afterwards.

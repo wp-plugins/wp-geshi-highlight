@@ -1,35 +1,53 @@
-.wp-geshi-highlight {
-    width: 100%;
-    font-size: 100%;
-    font-family: monospace;
-    line-height: 140%;
-    background-color: #fafaf7;
-    padding-left: 8px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-bottom: 8px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -moz-border-radius: 1px;
-    -webkit-border-radius: 1px;
-    border: none;
-    border-radius: 1px;
-    -moz-box-shadow: 1px 1px 34px #888;
-    -webkit-box-shadow: 1px 1px 3px #888;
-    box-shadow: 1px 1px 3px #888;
-    }
+/*
+   Copyright 2009-2014, Jan-Philip Gehrcke (http://gehrcke.de)
 
-.wp-geshi-highlight pre {
+   Simplistic styling. Tested with TwentyTwelve, TwentyThirteen and
+   a number of custom themes in modern versions of Firefox (27) and Chrome (33).
+   An absolute font size set for pre, span, li (within highlight container)
+   is the safest solution for proper code display, especially in Chrome.
+
+   I tried to set all relevant styles. However, certain themes might define
+   styles affecting the code display (it is difficult to anticipate these cases,
+   so I expect this to happen). In these cases, you need to identify
+   the corresponding selectors and override your theme's styles via this file
+   (wp-geshi-highlight.css), placed in your theme's directory.
+*/
+
+.wp-geshi-highlight pre, .wp-geshi-highlight span {
     overflow: visible;
     margin: 0;
     padding: 0;
-    background-color: #fafaf7 !important;
-    }
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-family: Consolas, Monaco, 'Lucida Console', monospace;
+    word-wrap: normal; /* Otherwise Chrome wraps lines */
+    white-space: pre;
+}
 
 .wp-geshi-highlight ol {
-    padding-right: 0;
-    }
+    margin: 0;
+    padding: 0;
+}
+
+.wp-geshi-highlight ol > li {
+    position: relative; /* Create a positioning context */
+    margin: 0 0 0 40px; /* Give each list item a left margin to make room for the numbers */
+}
 
 .wp-geshi-highlight li {
     padding-left: 2px;
+    font-family: monospace;
+    font-size: 12px;
     }
+
+.wp-geshi-highlight {
+    padding: 7px 10px 7px 15px;
+    margin: 2px 0 30px 0;
+    overflow-x: auto;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    background-color: #fdfdfd;
+    box-shadow: 0 8px 7px -10px #CCC, 0 -8px 7px -10px #CCC;
+}
+

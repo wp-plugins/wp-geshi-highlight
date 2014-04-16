@@ -2,23 +2,23 @@
 Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
-Tested up to: 3.6
-Stable tag: 1.1.0.2
+Tested up to: 3.9
+Stable tag: 1.2.0
 License: GPLv2
 
 Fast syntax highlighting for many languages. Simple usage. Based on GeSHi (well-established & award-winning PHP highlighter). Valid HTML output.
 
 == Description ==
-**I) Features:**
+**I) Highlights:**
 
 * Syntax highlighting for [**many** languages](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_8.txt).
-* Stability, performance and security inherited from [GeSHi](http://qbnz.com/highlighter/).
-* Line numbering (optional). Code-number displacements do not occur. Numbers are not copied in most browsers.
+* Stability, performance, and security inherited from [GeSHi](http://qbnz.com/highlighter/).
+* Optional line numbering. Code-number displacements do not occur. Numbers are not copied in most browsers.
 * Simple usage.
-* Per-block styles: each code block on a single web page can be designed on its own.
-* Clean, small and valid HTML output.
-* Minimal waste of CPU cycles when there is nothing to highlight.
-* Clean and well-documented source code.
+* Per-block styles: each code block on a single web page can retrieve its own style.
+* Clean, small, valid HTML output.
+* No waste of CPU cycles when there is nothing to highlight.
+* Well-documented source code.
 
 WP-GeSHi-Highlight is a largely rewritten version of [WP-Syntax](http://wordpress.org/extend/plugins/wp-syntax/). Compared to WP-Syntax, WP-GeSHi-Highlight
 
@@ -30,7 +30,7 @@ WP-GeSHi-Highlight is a largely rewritten version of [WP-Syntax](http://wordpres
 * makes usage of up-to-date WordPress API calls.
 
 **II) Usage:**
-Bear in mind: don't use the visual post editor. Then, it is very simple. Insert code blocks like this:
+Bear in mind: don't use the visual post editor. Insert code blocks just like this:
 
 `<pre lang="languagestring">
     CODE
@@ -64,10 +64,13 @@ Please have a look at the [plugin's website](http://gehrcke.de/wp-geshi-highligh
 
 
 == Screenshots ==
-1. This screenshot shows WP-GeSHi-Highlight in action. Furthermore, it visualizes how code blocks on the same page can have different styles (very easy to accomplish using WP-GeSHi-Highlight). Possibly this screenshot is out of date regarding the styling details.
-
+Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight/#examples)
 
 == Changelog ==
+= 1.2.0 (2014-04-16) =
+* Update GeSHi to git state of 2014-04-16 (tons of language updates).
+* Largely improve default style, for compatibility with modern browsers.
+
 = 1.1.0 (2013-06-22) =
 * Adjust default style for compatibility with Twentythirteen theme.
 * Remove GeSHi's hard-coded font-size and line-height code styles.

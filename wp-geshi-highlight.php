@@ -378,8 +378,8 @@ function wp_geshi_add_css_to_head() {
     global $wp_geshi_requested_css_files;
 
     // CSS dir/uri prefix and suffix.
-    $plugin_cssdir = WP_PLUGIN_DIR."/wp-geshi-highlight";
-    $plugin_cssdir_uri = WP_PLUGIN_URL."/wp-geshi-highlight";
+    $plugin_cssdir = plugin_dir_path(__FILE__);
+    $plugin_cssdir_uri = plugin_dir_url(__FILE__);
     $csssfx = ".css";
     // Retrieve directory for the current theme/child theme.
     $theme_cssdir = get_stylesheet_directory();

@@ -4,7 +4,7 @@ Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
 Description: Syntax highlighting for many languages based on GeSHi, the well-established and award-winning highlighter engine. Produces clean, small, valid HTML output. Simple to use and configurable.
 Author: Jan-Philip Gehrcke
-Version: 1.2.0
+Version: 1.2.1
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight is a largely changed version of WP-Syntax by
@@ -134,7 +134,7 @@ function wp_geshi_main() {
 
     // Generate unique token. Code snippets will temporarily be replaced by it
     // (+snip ID).
-    $wp_geshi_run_token = md5(uniqid(rand())); // (C) Ryan McGeary
+    $wp_geshi_run_token = uniqid(rand());
 
     // Filter all post/comment texts and save and replace code snippets.
     wp_geshi_filter_and_replace_code_snippets();
@@ -378,8 +378,8 @@ function wp_geshi_add_css_to_head() {
     global $wp_geshi_requested_css_files;
 
     // CSS dir/uri prefix and suffix.
-    $plugin_cssdir = WP_PLUGIN_DIR."/wp-geshi-highlight";
-    $plugin_cssdir_uri = WP_PLUGIN_URL."/wp-geshi-highlight";
+    $plugin_cssdir = plugin_dir_path(__FILE__);
+    $plugin_cssdir_uri = plugin_dir_url(__FILE__);
     $csssfx = ".css";
     // Retrieve directory for the current theme/child theme.
     $theme_cssdir = get_stylesheet_directory();

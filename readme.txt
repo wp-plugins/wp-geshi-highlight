@@ -2,8 +2,8 @@
 Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
-Tested up to: 3.9
-Stable tag: 1.2.0
+Tested up to: 3.9.1
+Stable tag: 1.2.1
 License: GPLv2
 
 Fast syntax highlighting for many languages. Simple usage. Based on GeSHi (well-established & award-winning PHP highlighter). Valid HTML output.
@@ -64,9 +64,14 @@ Please have a look at the [plugin's website](http://gehrcke.de/wp-geshi-highligh
 
 
 == Screenshots ==
-Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight/#examples)
+Examples can be found on the [plugin's website](http://gehrcke.de/wp-geshi-highlight/#examples)
 
 == Changelog ==
+= 1.2.1 (2014-05-21) =
+* Use plugin_dir_path/url() instead of obsolete WP_PLUGIN_DIR/URL constants (improve compatibility with HTTPS-driven websites).
+* Remove obsolete screenshot from release.
+* Minor code cleanup.
+
 = 1.2.0 (2014-04-16) =
 * Update GeSHi to git state of 2014-04-16 (tons of language updates).
 * Largely improve default style, for compatibility with modern browsers.

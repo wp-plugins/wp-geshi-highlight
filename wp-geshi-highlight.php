@@ -134,7 +134,7 @@ function wp_geshi_main() {
 
     // Generate unique token. Code snippets will temporarily be replaced by it
     // (+snip ID).
-    $wp_geshi_run_token = md5(uniqid(rand())); // (C) Ryan McGeary
+    $wp_geshi_run_token = uniqid(rand());
 
     // Filter all post/comment texts and save and replace code snippets.
     wp_geshi_filter_and_replace_code_snippets();

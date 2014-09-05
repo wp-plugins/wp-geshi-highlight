@@ -2,7 +2,7 @@
 Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
 Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: 1.2.2
 License: GPLv2
 

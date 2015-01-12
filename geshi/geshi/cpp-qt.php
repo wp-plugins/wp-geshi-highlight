@@ -4,7 +4,7 @@
  * -------
  * Author: Iulian M
  * Copyright: (c) 2006 Iulian M
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/09/27
  *
  * C++ (with Qt extensions) language file for GeSHi.
@@ -540,7 +540,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://doc.trolltech.com/latest/{FNAMEL}.html'
+        5 => 'http://qt-project.org/doc/latest/{FNAMEL}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

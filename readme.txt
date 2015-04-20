@@ -6,13 +6,13 @@ Tested up to: 4.2
 Stable tag: 1.2.3
 License: GPLv2
 
-Fast syntax highlighting for many languages. Simple usage. Based on GeSHi (well-established & award-winning PHP highlighter). Valid HTML output.
+Syntax highlighting for many languages. Simple usage. Based on GeSHi, an established and rock-solid highlight engine. Valid HTML output.
 
 == Description ==
 **I) Highlights:**
 
-* Syntax highlighting for [**many** languages](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_0_8.txt).
-* Stability, performance, and security inherited from [GeSHi](http://qbnz.com/highlighter/).
+* Syntax highlighting for [**tons of** languages](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_2_3.txt).
+* Reliability, performance, and security inherited from [GeSHi](http://qbnz.com/highlighter/).
 * Optional line numbering. Code-number displacements do not occur. Numbers are not copied in most browsers.
 * Simple usage.
 * Per-block styles: each code block on a single web page can retrieve its own style.

@@ -396,30 +396,31 @@ function wp_geshi_add_css_to_head() {
     // with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory
     $theme_dir = get_stylesheet_directory();
+    // Get URL for the current theme's stylesheet directory,
+    // *without* trailing slash, and *add* a trailing slash.
+    // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory_uri
+    $theme_dir_url = get_stylesheet_directory_uri()+"/";
 
     // Process array of requested CSS files (i.e. of file basenames w/o
     // .css extension): remove duplicates.
     $wp_geshi_requested_css_files = array_unique($wp_geshi_requested_css_files);
 
     foreach($wp_geshi_requested_css_files as $cssfile) {
-        $cssfilenamewslash = "/".$cssfile.".css";
+        $cssfilename = $cssfile.".css";
         // If the CSS file is found in the `get_stylesheet_directory()`,
         // make it take precedence over the CSS file in the plugin directory.
-        $theme_css_path = $theme_dir.$cssfilenamewslash;
-        $plugin_css_path = $plugin_dir.$cssfilenamewslash;
+        $theme_css_path = $theme_dir.$cssfilename;
+        $plugin_css_path = $plugin_dir.$cssfilename;
         if (file_exists($theme_css_path))
-            // Use the CSS file from the theme.
-            // Get URL for the current theme's stylesheet directory,
-            // *without* trailing slash, and add the basename.
-            // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory_uri
-            $cssurl = get_stylesheet_directory_uri().$cssfilenamewslash;
+            // Use the CSS file from the theme directory.
+            // Remember: $theme_dir_url has a trailing slash.
+            $cssurl = $theme_dir_url.$cssfilename;
         elseif (file_exists($plugin_css_path))
-            // Use the CSS file from the plugin dir.
+            // Use the CSS file from the plugin directory.
             // Remember: $plugin_dir_url has a trailing slash.
-            $cssurl = $plugin_dir_url.$cssfilenamewslash;
+            $cssurl = $plugin_dir_url.$cssfilename;
         else
-            // The user requested a CSS file that does not reside in the file
-            // system.
+            // A CSS file was requested that does not reside in the file system.
             $cssurl = false;
          // Enqueue style file to WP CSS queue.
         if ($cssurl) {

@@ -426,8 +426,8 @@ function wp_geshi_add_css_to_head() {
          // Enqueue style file to WP CSS queue.
         if ($cssuri) {
             // https://codex.wordpress.org/Function_Reference/wp_enqueue_style
-            wp_register_style("wp_geshi_".$cssfile, $cssuri);
-            wp_enqueue_style("wp_geshi_".$cssfile);
+            wp_register_style("wpgeshi-".$cssfile, $cssuri);
+            wp_enqueue_style("wpgeshi-".$cssfile);
             }
         }
 

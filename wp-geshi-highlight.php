@@ -392,8 +392,6 @@ function wp_geshi_add_css_to_head() {
     // Generate URL pointing to this plugin directory, with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/plugin_dir_url
     $plugin_dir_url = plugin_dir_url(__FILE__);
-    // Set file extension for CSS files.
-    $csssfx = ".css";
     // Get absolute path to the directory of the current (child) theme
     // with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory
@@ -404,7 +402,7 @@ function wp_geshi_add_css_to_head() {
     $wp_geshi_requested_css_files = array_unique($wp_geshi_requested_css_files);
 
     foreach($wp_geshi_requested_css_files as $cssfile) {
-        $cssfilenamewslash = "/".$cssfile.$csssfx;
+        $cssfilenamewslash = "/".$cssfile.".css";
         // If the CSS file is found in the `get_stylesheet_directory()`,
         // make it take precedence over the CSS file in the plugin directory.
         $theme_css_path = $theme_cssdir.$cssfilenamewslash;

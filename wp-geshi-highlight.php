@@ -395,7 +395,7 @@ function wp_geshi_add_css_to_head() {
     // Get absolute path to the directory of the current (child) theme
     // with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory
-    $theme_cssdir = get_stylesheet_directory();
+    $theme_dir = get_stylesheet_directory();
 
     // Process array of requested CSS files (i.e. of file basenames w/o
     // .css extension): remove duplicates.
@@ -405,7 +405,7 @@ function wp_geshi_add_css_to_head() {
         $cssfilenamewslash = "/".$cssfile.".css";
         // If the CSS file is found in the `get_stylesheet_directory()`,
         // make it take precedence over the CSS file in the plugin directory.
-        $theme_css_path = $theme_cssdir.$cssfilenamewslash;
+        $theme_css_path = $theme_dir.$cssfilenamewslash;
         $plugin_css_path = $plugin_dir.$cssfilenamewslash;
         if (file_exists($theme_css_path))
             // Use the CSS file from the theme.

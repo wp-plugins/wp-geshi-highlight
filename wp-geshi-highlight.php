@@ -280,7 +280,7 @@ function wp_geshi_highlight_and_generate_css() {
     if (!class_exists('GeSHi')) include_once("geshi/geshi.php");
     $wp_geshi_css_code = "";
     foreach($wp_geshi_codesnipmatch_arrays as $match_index => $match) {
-        // Process  match details. The array structure is explained in
+        // Process match details. The array structure is explained in
         // a comment to function `wp_geshi_filter_replace_code()`.
         $language = strtolower(trim($match[1]));
         $line = trim($match[2]);
@@ -311,15 +311,14 @@ function wp_geshi_highlight_and_generate_css() {
         // relative and, most importantly, customizable.
         $geshi->set_code_style('');
 
-        // Instruct GeSHi to create CSS code for the given snippet.
-        // Append to the CSS code string, if this is the first
-        // occurrence of the language.
-        // TODO: bail out earlier, this entire GeSHi setup could be skipped
-        // if lang was processed once already.
+        // If the current language has not been processed in a previous
+        // iteration:
+        // - create CSS code for this language
+        // - append this to the `$wp_geshi_css_code string`.
         // $geshi->get_stylesheet(false) disables the economy mode, i.e.
         // this will return the full CSS code for the given language.
-        // This makes it much easier to use the same CSS code for several
-        // code blocks of the same language.
+        // This allows for reusing the same CSS code for multiple code
+        // blocks of the same language.
         if  (!in_array($language, $wp_geshi_used_languages)) {
             $wp_geshi_used_languages[] = $language;
             $wp_geshi_css_code .= $geshi->get_stylesheet(false);
@@ -431,7 +430,7 @@ function wp_geshi_add_css_to_head() {
 
     // Echo GeSHi highlighting CSS code inline.
     if (strlen($wp_geshi_css_code) > 0)
-        echo '<style type="text/css">'.$wp_geshi_css_code.'</style>';
+        echo "<style type=\"text/css\">\n".$wp_geshi_css_code."</style>\n";
     }
 
 

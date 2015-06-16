@@ -388,10 +388,10 @@ function wp_geshi_add_css_to_head() {
     // Get absolute path to the directory this plugin resides in,
     // with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/plugin_dir_path
-    $plugin_cssdir = plugin_dir_path(__FILE__);
+    $plugin_dir = plugin_dir_path(__FILE__);
     // Generate URL pointing to this plugin directory, with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/plugin_dir_url
-    $plugin_cssdir_uri = plugin_dir_url(__FILE__);
+    $plugin_dir_uri = plugin_dir_url(__FILE__);
     // Set file extension for CSS files.
     $csssfx = ".css";
     // Get absolute path to the directory of the current (child) theme
@@ -408,7 +408,7 @@ function wp_geshi_add_css_to_head() {
         // If the CSS file is found in the `get_stylesheet_directory()`,
         // make it take precedence over the CSS file in the plugin directory.
         $theme_css_path = $theme_cssdir.$cssfilenamewslash;
-        $plugin_css_path = $plugin_cssdir.$cssfilenamewslash;
+        $plugin_css_path = $plugin_dir.$cssfilenamewslash;
         if (file_exists($theme_css_path))
             // Use the CSS file from the theme.
             // Get URL for the current theme's stylesheet directory,
@@ -417,8 +417,8 @@ function wp_geshi_add_css_to_head() {
             $cssuri = get_stylesheet_directory_uri().$cssfilenamewslash;
         elseif (file_exists($plugin_css_path))
             // Use the CSS file from the plugin dir.
-            // Remember: $plugin_cssdir_uri has a trailing slash.
-            $cssuri = $plugin_cssdir_uri.$cssfilenamewslash;
+            // Remember: $plugin_dir_uri has a trailing slash.
+            $cssuri = $plugin_dir_uri.$cssfilenamewslash;
         else
             // The user requested a CSS file that does not reside in the file
             // system.

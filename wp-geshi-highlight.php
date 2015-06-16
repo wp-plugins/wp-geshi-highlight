@@ -396,7 +396,7 @@ function wp_geshi_add_css_to_head() {
     // with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory
     $theme_dir = get_stylesheet_directory();
-    // Get URL for the current theme's stylesheet directory,
+    // Get URL for the current (child) theme's stylesheet directory,
     // *without* trailing slash, and *add* a trailing slash.
     // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory_uri
     $theme_dir_url = get_stylesheet_directory_uri()+"/";
@@ -422,11 +422,10 @@ function wp_geshi_add_css_to_head() {
         else
             // A CSS file was requested that does not reside in the file system.
             $cssurl = false;
-         // Enqueue style file to WP CSS queue.
         if ($cssurl) {
+            // Instruct WordPress to include this resource in the HTML head.
             // https://codex.wordpress.org/Function_Reference/wp_enqueue_style
-            wp_register_style("wpgeshi-".$cssfile, $cssurl);
-            wp_enqueue_style("wpgeshi-".$cssfile);
+            wp_enqueue_style("wpgeshi-".$cssfile, $cssurl);
             }
         }
 

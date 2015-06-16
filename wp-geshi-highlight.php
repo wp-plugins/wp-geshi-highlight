@@ -391,7 +391,7 @@ function wp_geshi_add_css_to_head() {
     $plugin_dir = plugin_dir_path(__FILE__);
     // Generate URL pointing to this plugin directory, with a trailing slash.
     // https://codex.wordpress.org/Function_Reference/plugin_dir_url
-    $plugin_dir_uri = plugin_dir_url(__FILE__);
+    $plugin_dir_url = plugin_dir_url(__FILE__);
     // Set file extension for CSS files.
     $csssfx = ".css";
     // Get absolute path to the directory of the current (child) theme
@@ -414,19 +414,19 @@ function wp_geshi_add_css_to_head() {
             // Get URL for the current theme's stylesheet directory,
             // *without* trailing slash, and add the basename.
             // https://codex.wordpress.org/Function_Reference/get_stylesheet_directory_uri
-            $cssuri = get_stylesheet_directory_uri().$cssfilenamewslash;
+            $cssurl = get_stylesheet_directory_uri().$cssfilenamewslash;
         elseif (file_exists($plugin_css_path))
             // Use the CSS file from the plugin dir.
-            // Remember: $plugin_dir_uri has a trailing slash.
-            $cssuri = $plugin_dir_uri.$cssfilenamewslash;
+            // Remember: $plugin_dir_url has a trailing slash.
+            $cssurl = $plugin_dir_url.$cssfilenamewslash;
         else
             // The user requested a CSS file that does not reside in the file
             // system.
-            $cssuri = false;
+            $cssurl = false;
          // Enqueue style file to WP CSS queue.
-        if ($cssuri) {
+        if ($cssurl) {
             // https://codex.wordpress.org/Function_Reference/wp_enqueue_style
-            wp_register_style("wpgeshi-".$cssfile, $cssuri);
+            wp_register_style("wpgeshi-".$cssfile, $cssurl);
             wp_enqueue_style("wpgeshi-".$cssfile);
             }
         }

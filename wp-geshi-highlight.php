@@ -280,72 +280,72 @@ function wp_geshi_highlight_and_generate_css() {
     if (!class_exists('GeSHi')) include_once("geshi/geshi.php");
     $wp_geshi_css_code = "";
     foreach($wp_geshi_codesnipmatch_arrays as $match_index => $match) {
-            // Process  match details. The array structure is explained in
-            // a comment to function `wp_geshi_filter_replace_code()`.
-            $language = strtolower(trim($match[1]));
-            $line = trim($match[2]);
-            $escaped = trim($match[3]);
-            $cssfile = trim($match[4]);
-            $code = wp_geshi_code_trim($match[5]);
-            if ($escaped == "true")
-                $code = htmlspecialchars_decode($code); // (C) Ryan McGeary
+        // Process  match details. The array structure is explained in
+        // a comment to function `wp_geshi_filter_replace_code()`.
+        $language = strtolower(trim($match[1]));
+        $line = trim($match[2]);
+        $escaped = trim($match[3]);
+        $cssfile = trim($match[4]);
+        $code = wp_geshi_code_trim($match[5]);
+        if ($escaped == "true")
+            $code = htmlspecialchars_decode($code); // (C) Ryan McGeary
 
-            // Set up GeSHi.
-            $geshi = new GeSHi($code, $language);
-            // Output CSS code / do *not* create inline styles.
-            $geshi->enable_classes();
-            // Disable keyword links.
-            $geshi->enable_keyword_links(false);
+        // Set up GeSHi.
+        $geshi = new GeSHi($code, $language);
+        // Output CSS code / do *not* create inline styles.
+        $geshi->enable_classes();
+        // Disable keyword links.
+        $geshi->enable_keyword_links(false);
 
-            if ($line) {
-                $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
-                $geshi->start_line_numbers_at($line);
-                }
+        if ($line) {
+            $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
+            $geshi->start_line_numbers_at($line);
+            }
 
-            // Set the output type. Reference:
-            // http://qbnz.com/highlighter/geshi-doc.html#the-code-container
-            $geshi->set_header_type(GESHI_HEADER_PRE_VALID);
+        // Set the output type. Reference:
+        // http://qbnz.com/highlighter/geshi-doc.html#the-code-container
+        $geshi->set_header_type(GESHI_HEADER_PRE_VALID);
 
-            // By default, geshi sets font size to 1em and line height to 1.2em.
-            // That does not fit many modern CSS architectures. Make this
-            // relative and, most importantly, customizable.
-            $geshi->set_code_style('');
+        // By default, geshi sets font size to 1em and line height to 1.2em.
+        // That does not fit many modern CSS architectures. Make this
+        // relative and, most importantly, customizable.
+        $geshi->set_code_style('');
 
-            // Instruct GeSHi to create CSS code for the given snippet.
-            // Append to the CSS code string, if this is the first
-            // occurrence of the language.
-            // TODO: bail out earlier, this entire GeSHi setup could be skipped
-            // if lang was processed once already.
-            // $geshi->get_stylesheet(false) disables the economy mode, i.e.
-            // this will return the full CSS code for the given language.
-            // This makes it much easier to use the same CSS code for several
-            // code blocks of the same language.
-            if  (!in_array($language, $wp_geshi_used_languages)) {
-                $wp_geshi_used_languages[] = $language;
-                $wp_geshi_css_code .= $geshi->get_stylesheet(false);
-                }
+        // Instruct GeSHi to create CSS code for the given snippet.
+        // Append to the CSS code string, if this is the first
+        // occurrence of the language.
+        // TODO: bail out earlier, this entire GeSHi setup could be skipped
+        // if lang was processed once already.
+        // $geshi->get_stylesheet(false) disables the economy mode, i.e.
+        // this will return the full CSS code for the given language.
+        // This makes it much easier to use the same CSS code for several
+        // code blocks of the same language.
+        if  (!in_array($language, $wp_geshi_used_languages)) {
+            $wp_geshi_used_languages[] = $language;
+            $wp_geshi_css_code .= $geshi->get_stylesheet(false);
+            }
 
-            $output = "";
-            // cssfile "none" means no wrapping divs at all.
-            if ($cssfile != "none") {
-                if (empty($cssfile))
-                    // For this code snippet the default css file is required.
-                    $cssfile = "wp-geshi-highlight";
-                // Append "the css file" to the array.
-                $wp_geshi_requested_css_files[] = $cssfile;
-                $output .= "\n\n".'<div class="'.$cssfile.'-wrap5">'.
-                           '<div class="'.$cssfile.'-wrap4">'.
-                           '<div class="'.$cssfile.'-wrap3">'.
-                           '<div class="'.$cssfile.'-wrap2">'.
-                           '<div class="'.$cssfile.'-wrap">'.
-                           '<div class="'.$cssfile.'">';
-                }
-            // Create highlighted HTML code.
-            $output .= $geshi->parse_code();
-            if ($cssfile != "none")
-                $output .= '</div></div></div></div></div></div>'."\n\n";
-            // Store highlighted HTML code for later usage.
-            $wp_geshi_highlighted_matches[$match_index] = $output;
+        $output = "";
+        // cssfile "none" means no wrapping divs at all.
+        if ($cssfile != "none") {
+            if (empty($cssfile))
+                // For this code snippet the default css file is required.
+                $cssfile = "wp-geshi-highlight";
+            // Append "the css file" to the array.
+            $wp_geshi_requested_css_files[] = $cssfile;
+            $output .= "\n\n".'<div class="'.$cssfile.'-wrap5">'.
+                       '<div class="'.$cssfile.'-wrap4">'.
+                       '<div class="'.$cssfile.'-wrap3">'.
+                       '<div class="'.$cssfile.'-wrap2">'.
+                       '<div class="'.$cssfile.'-wrap">'.
+                       '<div class="'.$cssfile.'">';
+            }
+        // Create highlighted HTML code.
+        $output .= $geshi->parse_code();
+        if ($cssfile != "none")
+            $output .= '</div></div></div></div></div></div>'."\n\n";
+        // Store highlighted HTML code for later usage.
+        $wp_geshi_highlighted_matches[$match_index] = $output;
         }
     // At this point, all code snippets are parsed. Highlighted code is stored.
     // CSS code has been generated. Delete what is not required anymore.

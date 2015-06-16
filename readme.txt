@@ -44,7 +44,7 @@ A short example:
 
 All available options are listed and explained on the [plugin's website](https://gehrcke.de/wp-geshi-highlight).
 
-**III) How does the look in action?**
+**III) How does it look in action?**
 
 A demo/examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight/#examples).
 

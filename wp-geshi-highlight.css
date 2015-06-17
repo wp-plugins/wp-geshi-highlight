@@ -10,7 +10,11 @@
     - Twenty Fourteen (version 1.4)
     - Twenty Fifteen (version 1.2)
 
-   Also tested with a number of non-offocial themes.
+   Also tested with a number of popular non-offocial themes, such as
+
+    - Vantage
+    - Customizr
+    - ColorWay
 
    Ensuring a nice and normalized visual appearance out-of-the-box with a
    number of themes requires to make certain compromises. It turned out that
@@ -72,4 +76,10 @@
     background-color: #fdfdfd;
     box-shadow: 0 8px 7px -10px #CCC, 0 -8px 7px -10px #CCC;
 }
+
+/* Enforce background-color in some non-official themes when using numbering */
+.wp-geshi-highlight div ol li{
+    background-color: #fdfdfd;
+}
+
 

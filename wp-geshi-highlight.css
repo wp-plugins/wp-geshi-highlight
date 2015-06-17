@@ -15,6 +15,8 @@
     - Vantage
     - Customizr
     - ColorWay
+    - Zerif Lite
+    - 
 
    Ensuring a nice and normalized visual appearance out-of-the-box with a
    number of themes requires to make certain compromises. It turned out that
@@ -65,6 +67,7 @@
     padding-left: 2px;
     font-family: monospace;
     font-size: 12px;
+    list-style: decimal !important;
     }
 
 .wp-geshi-highlight {

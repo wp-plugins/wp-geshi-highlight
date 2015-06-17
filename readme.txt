@@ -1,56 +1,64 @@
-=== WP-GeSHi-Highlight -- simple syntax highlighting based on GeSHi ===
+=== WP-GeSHi-Highlight — simple, fast, and reliable syntax highlighting ===
 Contributors: jgehrcke
 Donate link: http://gehrcke.de/donate/
-Tags: syntax, highlight, geshi, highlighting, valid, clean, fast, wp-geshi-highlight
+Tags: syntax, highlight, simple, geshi, highlighting, valid, fast
 Tested up to: 4.2
-Stable tag: 1.2.3
+Requires at least: 3.0
+Stable tag: 1.3.0
 License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Syntax highlighting for many languages. Simple usage. Based on GeSHi, an established and rock-solid highlight engine. Valid HTML output.
 
 == Description ==
-**I) Highlights:**
 
-* Syntax highlighting for [**tons of** languages](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_2_3.txt).
-* Reliability, performance, and security inherited from [GeSHi](http://qbnz.com/highlighter/).
-* Optional line numbering. Code-number displacements do not occur. Numbers are not copied in most browsers.
-* Simple usage.
-* Per-block styles: each code block on a single web page can retrieve its own style.
-* Clean, small, valid HTML output.
-* No waste of CPU cycles when there is nothing to highlight.
-* Well-documented source code.
+**• Go, have a look at the [live demo](https://gehrcke.de/wp-geshi-highlight-demo/).**
 
-WP-GeSHi-Highlight is a largely rewritten version of [WP-Syntax](http://wordpress.org/extend/plugins/wp-syntax/). Compared to WP-Syntax, WP-GeSHi-Highlight
+**• Plugin highlights:**
 
-* creates valid HTML when line numbering is activated (via GeSHi's [GESHI_HEADER_PRE_VALID](http://qbnz.com/highlighter/geshi-doc.html#the-code-container) setting).
-* creates less HTML source code.
-* delivers a default style sheet making use of modern CSS properties.
-* has more styling flexibility.
-* has the cleaner source code.
-* makes usage of up-to-date WordPress API calls.
+* Syntax highlighting for [240 languages](http://gehrcke.de/files/perm/wp-geshi-highlight/wp-geshi-highlight_languages_1_2_3.txt).
+* Lightweight and super-simple usage.
+* Mobile-friendly: saves bandwidth and battery (no client-side code execution required, usually only one additional HTTP request). This is much better than using one of these heavy-scripted client-side solutions!
+* High performance, with near-zero additional load on the back-end. Especially in combination with a caching solution this does not affect your page load time at all.
+* Line numbering (only if you want to). No displacements between code line and line number. Numbers are not copied in most browsers.
+* I have tested the default style with more than 20 themes, including Twenty Ten to Fifteen.
+* If you do not like the default style: just provide your on CSS file. Styles are highly & easily configurable.
+* Per-block styles: each code block on a single web page can be designed on its own, if that is something you need to do.
+* Clean, small and valid HTML output. That's super-important!
+* Clean and well-documented source code, using modern WordPress API calls.
+* Well-maintained for several years already, and I'll continue to provide support.
+* This is based on [GeSHi](http://qbnz.com/highlighter/), a reliable and well-established PHP highlighting engine, used by popular forum softwares such as phpBB or wiki applications such as Dokuwiki or MediaWiki.
+* Stability, performance and security are inherited from GeSHi. And I'll continue to merge in upstream changes.
 
-**II) Usage:**
-Bear in mind: don't use the visual post editor. Insert code blocks just like this:
+WP-GeSHi-Highlight works as a drop-in replacement for [WP-Syntax](http://wordpress.org/extend/plugins/wp-syntax/), which does not seem to be maintained anymore. Make the switch, it should just work (let me know how it went)!
+
+**• Usage:**
+
+Bear in mind: do not use the visual post editor. Use the raw editor instead. There, insert code blocks as canonical `pre` blocks, and use the `lang` argument to define the language of the code snippet:
 
 `<pre lang="languagestring">
     CODE
 </pre>`
 
-A short example:
+A short example for the `bash` language:
 
 `<pre lang="bash">
     $ dd if=/dev/zero of=image.ext3 bs=1M count=10000 oflag=append conv=notrunc
 </pre>`
 
-All available options are listed and explained on the [plugin's website](http://gehrcke.de/wp-geshi-highlight).
+This is all you need to do. Right, it is that simple! Isn't that cool?
 
-**III) How does it look in action?**
+Be sure to also check out the reference documentation for all available options. You can find it on the [plugin's website](https://gehrcke.de/wp-geshi-highlight). Note that more usage examples can be found on the [demo website](https://gehrcke.de/wp-geshi-highlight-demo/).
 
-Examples can be found on the [plugin's homepage](http://gehrcke.de/wp-geshi-highlight/#examples).
+**• Issues:**
 
-**IV) Issues:**
+Many websites have used this plugin for years, and it seems to serve its purpose very well. Most issues so far were style-related. If you find an issue, please let me know: drop a [mail](mailto:jgehrcke@googlemail.com) or leave a [comment](http://gehrcke.de/wp-geshi-highlight).
 
-Let me know if you find one: write a [mail](mailto:jgehrcke@googlemail.com) or leave a [comment](http://gehrcke.de/wp-geshi-highlight).
+**• Theme compatibility of the default style sheet:**
+
+The default style sheet was tested with recent versions of all official themes (Twenty Ten to Twenty Fifteen), and with a large range of non-official themes such as Vantage, Customizr, ColorWay, Zerif Lite, Responsive, Storefront, Virtue, evolve, Make, Sparkling, Spacious, Enigma, Sydney, Point, Interface, SinglePage.
+
+Certain themes might define styles with a high specificity that negatively affect the visual code block appearance. It is difficult to impossible to anticipate all these cases in advance, so I expect this to happen in rare cases (the past has proven that these things happen). So, I need you to look out for these situations, and please report them!
 
 
 == Installation ==
@@ -64,14 +72,24 @@ Please have a look at the [plugin's website](http://gehrcke.de/wp-geshi-highligh
 
 
 == Screenshots ==
-Examples can be found on the [plugin's website](http://gehrcke.de/wp-geshi-highlight/#examples)
+I feel that a [live demonstration](https://gehrcke.de/wp-geshi-highlight-demo/) is better than just screenshots.
+
 
 == Changelog ==
+= 1.3.0 (2015-06-18) =
+* Enhance compatibility of the default stylesheet with a large range of themes by increasing the specificity of certain CSS selectors and by adding more style directives. This ensures a better out-of-the-box experience. Thanks to Pascal Krause for reporting an incompatilibity with Twenty Ten.
+
+= 1.2.4 (2015-06-17) =
+* Increase compatibility with CDNs: fix double slash appearing in CSS file URL.
+* Remove redundant call to `wp_register_style()`.
+* Change style sheet ID prefix, add newline characters to GeSHi CSS code output.
+* Improve code documentation and readability.
+
 = 1.2.3 (2015-01-12) =
 * Update GeSHi to 1.0.8.12 (language file updates).
 
 = 1.2.2 (2014-05-26) =
-* CSS improvement (add box-shadow:none to pre block, override external setting).
+* Improve default CSS (add box-shadow:none to pre block, override external setting).
 
 = 1.2.1 (2014-05-21) =
 * Use plugin_dir_path/url() instead of obsolete WP_PLUGIN_DIR/URL constants (improve compatibility with HTTPS-driven websites).
@@ -122,3 +140,4 @@ Examples can be found on the [plugin's website](http://gehrcke.de/wp-geshi-highl
 
 = 1.0.0-beta (2010-11-22) =
 * Initial release.
+

@@ -10,7 +10,7 @@
     - Twenty Fourteen (version 1.4)
     - Twenty Fifteen (version 1.2)
 
-   Also tested with a number of popular non-offocial themes, such as
+   Also tested with a number of popular non-official themes, such as
 
     - Vantage
     - Customizr
@@ -92,7 +92,7 @@
 }
 
 /* Enforce background-color in some non-official themes when using numbering */
-.wp-geshi-highlight div ol li{
+.wp-geshi-highlight div ol li {
     background-color: #fdfdfd;
 }
 

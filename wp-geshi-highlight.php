@@ -4,7 +4,7 @@ Plugin Name: WP-GeSHi-Highlight
 Plugin URI: http://gehrcke.de/wp-geshi-highlight/
 Description: Syntax highlighting for many languages. Based on GeSHi, a rock-solid, well-established highlighter engine. Produces clean, small, valid HTML output. Very simple to use, but customizable.
 Author: Jan-Philip Gehrcke
-Version: 1.2.4
+Version: 1.3.0
 Author URI: http://gehrcke.de
 
 WP-GeSHi-Highlight was originally based on WP-Syntax by Ryan McGeary.
